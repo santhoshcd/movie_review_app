@@ -1,29 +1,58 @@
 <%- model_class = Movie -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-default" style="height:450px;background: #e7e7e7;">
+      <div class="panel-heading"><%= @movie.title %></div>
+        <div class="panel-body">
+            <%= image_tag @movie.poster.url(:medium) %>
+            <br/>
+            <label for="input-1" class="control-label">Rate This</label>
+            <div id="stars" class="starrr" data-rating='0'></div>
+            <label for="input-1" class="control-label">You gave a rating of <span id="count">0</span> star(s)</label>
+        </div>
+      </div>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="panel panel-default" style="height:450px;background: #e7e7e7;">
+      <div class="panel-heading"> Details</div>
+        <div class="panel-body">
+          <dl class="dl-horizontal">
+            <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+            <dd><%= @movie.title %></dd>
+            <dt><strong><%= model_class.human_attribute_name(:duration) %>:</strong></dt>
+            <dd><%= @movie.duration %></dd>
+            <dt><strong><%= model_class.human_attribute_name(:director) %>:</strong></dt>
+            <dd><%= @movie.director %></dd>
+            <dt><strong><%= model_class.human_attribute_name(:rating) %>:</strong></dt>
+            <dd><%= @movie.rating %></dd>
+            <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+            <dd><%= @movie.description %></dd>
+          </dl>
+          <%= link_to t('.back', :default => t("helpers.links.back")),
+                        movies_path, :class => 'btn btn-default'  %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_movie_path(@movie), :class => 'btn btn-default' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        movie_path(@movie),
+                        :method => 'delete',
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-danger' %>
+        </div>
+      </div>
+  </div>
+  
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:poster) %>:</strong></dt>
-  <dd><%= image_tag @movie.poster.url(:medium) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @movie.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:duration) %>:</strong></dt>
-  <dd><%= @movie.duration %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:director) %>:</strong></dt>
-  <dd><%= @movie.director %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:rating) %>:</strong></dt>
-  <dd><%= @movie.rating %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @movie.description %></dd>
-</dl>
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              movies_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_movie_path(@movie), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              movie_path(@movie),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".starrr").starrr();
+    $('#stars').on('starrr:change', function(e, value){
+      $('#count').html(value);
+    });
+    
+    $('#stars-existing').on('starrr:change', function(e, value){
+      $('#count-existing').html(value);
+    });
+  });
+</script>
