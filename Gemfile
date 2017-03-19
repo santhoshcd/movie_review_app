@@ -53,4 +53,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem "twitter-bootstrap-rails"
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+# gem 'omniauth-github'
+
+
+
+gem 'bootstrap-social-rails'
+gem 'font-awesome-rails'
+
 ruby "2.3.1"
