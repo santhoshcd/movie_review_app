@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 	belongs_to :role
+	has_many :reviews
+	has_many :users, through: :reviews
 	before_create :set_default_role
 
 	def self.from_omniauth(auth)
