@@ -8,9 +8,9 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :oauth_token
       t.string :image_path
       t.datetime :oauth_expires_at
-      add_index :users, :provider
-      add_index :users, :uid
-      add_index :users, [:provider, :uid], unique: true
+      # add_index :users, :provider
+      # add_index :users, :uid
+      # add_index :users, [:provider, :uid], unique: true
       t.timestamps
     end
   end
