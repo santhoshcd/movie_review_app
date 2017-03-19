@@ -48,11 +48,20 @@
 		    </form>
 
 		    <ul class="nav navbar-nav navbar-right">
-		    <% if current_user %>
-			    <li><span><%= current_user.name %>|<%= link_to "Sign out", signout_path, id: "sign_out" %></span><li>
-			 <% else %>
-			    <li><a id="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-			  <% end %>
+          <% if current_user %>
+			      <li class="nav-item ">
+              <a class="nav-link" href="#">
+              <%= current_user.name %>
+              <span class="sr-only">  </span>
+              </a>
+            </li> 
+            <li class="nav-item ">
+              <%= link_to "Sign out", signout_path, id: "sign_out", class: "nav-link" %>
+              <span class="sr-only">  </span>
+            </li>	  
+          <% else %>
+  			    <li><a id="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+  			  <% end %>
 		    </ul>
         </div>
       </div>
