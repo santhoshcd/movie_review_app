@@ -8,6 +8,9 @@
   .modal-footer {
       background-color: #f9f9f9;
   }
+  .cursor_pointer {
+    cursor: pointer;
+  }
 </style>
 <div class="navbar navbar-default navbar-static-top">
       <div class="container">
@@ -19,21 +22,24 @@
         <%= link_to "Movie Reviews", root_path, class: "navbar-brand" %>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li class="nav-item <%= active_class('movies', 'new') %>">
-			  <%= link_to new_movie_path, class: "nav-link" do %>
-				New Movie
-				<span class="sr-only"> <%= active_span('movies', 'new') %> </span>
-			  <% end %>	  
-		    </li>	
-			
-		    <li class="nav-item <%= active_class('welcome', 'about') %>">
-			  <%= link_to about_path, class: 'nav-link' do %>
-				About
-				<span class="sr-only"> <%= active_span('welcome', 'about') %> </span>
-			  <% end %>
-		    </li>
+            <% if current_user.present? && current_user.is_admin? %>
+              <li class="nav-item <%= active_class('movies', 'new') %>">
+        			  <%= link_to new_movie_path, class: "nav-link" do %>
+        				New Movie
+        				<span class="sr-only"> <%= active_span('movies', 'new') %> </span>
+        			  <% end %>	  
+      		    </li>	
+			      <% end %>
+    		    
+            <li class="nav-item <%= active_class('welcome', 'about') %>">
+    			  <%= link_to about_path, class: 'nav-link' do %>
+    				About
+    				<span class="sr-only"> <%= active_span('welcome', 'about') %> </span>
+    			  <% end %>
+    		    </li>
           </ul>
-            <form class="navbar-form navbar-left">
+
+          <form class="navbar-form navbar-left">
 		    	<%= form_tag(search_movies_path, method: :get, class: "form-inline pull-xs-right", role: 'search') do %>
 			    <div class="input-group">
 			        <%= text_field_tag :term, params[:term], class: 'form-control', placeholder: "Search" %>
@@ -60,7 +66,12 @@
               <span class="sr-only">  </span>
             </li>	  
           <% else %>
-  			    <li><a id="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+  			    <li>
+              <a id="login" class="cursor_pointer">
+                <span class="glyphicon glyphicon-log-in"></span>
+                Login
+              </a>
+            </li>
   			  <% end %>
 		    </ul>
         </div>

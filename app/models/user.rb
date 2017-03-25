@@ -18,9 +18,8 @@ class User < ApplicationRecord
 	    end
 	end
 
-	private
-		def set_default_role
-		  self.role ||= Role.find_by_name('customers')
-		end
+	def is_admin?
+		self.role.name == 'admin'
+	end
 
 end

@@ -29,15 +29,17 @@
             <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
             <dd><%= @movie.description %></dd>
           </dl>
-          <%= link_to t('.back', :default => t("helpers.links.back")),
-                        movies_path, :class => 'btn btn-default'  %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_movie_path(@movie), :class => 'btn btn-default' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <% if current_user.present? && current_user.is_admin? %>
+            <%= link_to t('.back', :default => t("helpers.links.back")),
+                          movies_path, :class => 'btn btn-default'  %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                          edit_movie_path(@movie), :class => 'btn btn-default' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                         movie_path(@movie),
                         :method => 'delete',
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-danger' %>
+          <% end %>
         </div>
       </div>
   </div>

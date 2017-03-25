@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:edit, :update, :destroy]
 
   # GET /movies
   # GET /movies.json
@@ -64,11 +65,20 @@ class MoviesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
-      @movie = Movie.find(params[:id])
+      @movie = Movie.find_by_id(params[:id])
+      if @movie.blank?
+        redirect_to root_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
       params.require(:movie).permit(:title, :duration, :director, :rating, :description, :poster)
+    end
+
+    def authorize
+      if @current_user.blank?
+        redirect_to root_url
+      end
     end
 end
