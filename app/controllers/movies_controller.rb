@@ -62,6 +62,15 @@ class MoviesController < ApplicationController
     end
   end
 
+  def search
+    keyword = params[:keyword]
+    @movies = []
+    if keyword.present?
+      @movies = Movie.where("title like ?", "%#{keyword}%")
+    end
+    render :index, location: @movie
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie

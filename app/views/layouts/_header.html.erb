@@ -39,10 +39,9 @@
     		    </li>
           </ul>
 
-          <form class="navbar-form navbar-left">
-		    	<%= form_tag(search_movies_path, method: :get, class: "form-inline pull-xs-right", role: 'search') do %>
+		    	<%= form_tag(search_movies_path, method: :get, class: "navbar-form navbar-left form-inline pull-xs-right", role: 'search') do %>
 			    <div class="input-group">
-			        <%= text_field_tag :term, params[:term], class: 'form-control', placeholder: "Search" %>
+			        <%= text_field_tag :keyword, params[:keyword], class: 'form-control', placeholder: "Search" %>
 				
 			        <div class="input-group-btn">
 			          <button class="btn btn-default" type="submit">
@@ -51,7 +50,6 @@
 			        </div>
 			      </div>
 			  <% end %>	
-		    </form>
 
 		    <ul class="nav navbar-nav navbar-right">
           <% if current_user %>

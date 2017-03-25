@@ -4,7 +4,7 @@
     <div class="panel panel-default" style="height:450px;background: #e7e7e7;">
       <div class="panel-heading"><%= @movie.title %></div>
         <div class="panel-body">
-            <%= image_tag @movie.poster.url(:medium) %>
+            <%= image_tag @movie.poster.url(:medium),class: "img-thumbnail" %>
             <br/>
             <label for="input-1" class="control-label">Rate This</label>
             <div id="stars" class="starrr" data-rating='0'></div>
