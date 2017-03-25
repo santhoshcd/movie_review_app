@@ -1,20 +1,20 @@
 <%- model_class = Movie -%>
 <div class="row">
   <div class="col-md-4">
-    <div class="panel panel-default" style="height:450px;background: #e7e7e7;">
+    <div class="panel panel-default" style="height: 500px; background: #e7e7e7;">
       <div class="panel-heading"><%= @movie.title %></div>
         <div class="panel-body">
-            <%= image_tag @movie.poster.url(:medium),class: "img-thumbnail" %>
+            <%= image_tag @movie.poster.url(:medium), class: "img-thumbnail" %>
             <br/>
-            <label for="input-1" class="control-label">Rate This</label>
-            <div id="stars" class="starrr" data-rating='0'></div>
-            <label for="input-1" class="control-label">You gave a rating of <span id="count">0</span> star(s)</label>
+            <!-- <label for="input-1" class="control-label">Rate This</label> -->
+            <div id="stars" class="starrr" data-rating='<%=@movie.rating%>'></div>
+            <!-- <label for="input-1" class="control-label">You gave a rating of <span id="count">0</span> star(s)</label> -->
         </div>
       </div>
   </div>
   
   <div class="col-md-6">
-    <div class="panel panel-default" style="height:450px;background: #e7e7e7;">
+    <div class="panel panel-default" style="height:500px;background: #e7e7e7;">
       <div class="panel-heading"> Details</div>
         <div class="panel-body">
           <dl class="dl-horizontal">
@@ -49,12 +49,12 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $(".starrr").starrr();
-    $('#stars').on('starrr:change', function(e, value){
-      $('#count').html(value);
-    });
+    // $('#stars').on('starrr:change', function(e, value){
+    //   $('#count').html(value);
+    // });
     
-    $('#stars-existing').on('starrr:change', function(e, value){
-      $('#count-existing').html(value);
-    });
+    // $('#stars-existing').on('starrr:change', function(e, value){
+    //   $('#count-existing').html(value);
+    // });
   });
 </script>

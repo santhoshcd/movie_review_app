@@ -7,7 +7,7 @@ var __slice = [].slice;
   Starrr = (function() {
     Starrr.prototype.defaults = {
       rating: void 0,
-      numStars: 5,
+      numStars: 10,
       change: function(e, value) {}
     };
 
@@ -66,8 +66,8 @@ var __slice = [].slice;
           this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
         }
       }
-      if (rating && rating < 5) {
-        for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+      if (rating && rating < this.options.numStars) {
+        for (i = _j = rating; rating <= this.options.numStars - 1  ? _j <= this.options.numStars - 1 : _j >= this.options.numStars - 1; i = rating <= this.options.numStars - 1 ? ++_j : --_j) {
           this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
         }
       }
